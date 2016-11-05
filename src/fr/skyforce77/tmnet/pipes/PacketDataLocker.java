@@ -10,6 +10,8 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
+import fr.skyforce77.tmnet.packet.PacketData;
+
 public class PacketDataLocker implements PacketDataPipe {
 	
 	private Cipher cipher;
@@ -43,10 +45,10 @@ public class PacketDataLocker implements PacketDataPipe {
 	}
 
 	@Override
-	public byte[] in(byte[] data) {
+	public void in(PacketData data) {
 		try {
 			cipher.init(Cipher.DECRYPT_MODE, key);
-			return cipher.doFinal(data);
+			data.setBytes(cipher.doFinal(data.getBytes()));
 		} catch (InvalidKeyException e) {
 			e.printStackTrace();
 		} catch (IllegalBlockSizeException e) {
@@ -54,14 +56,13 @@ public class PacketDataLocker implements PacketDataPipe {
 		} catch (BadPaddingException e) {
 			e.printStackTrace();
 		}
-		return data;
 	}
 
 	@Override
-	public byte[] out(byte[] data) {
+	public void out(PacketData data) {
 		try {
 			cipher.init(Cipher.ENCRYPT_MODE, key);
-			return cipher.doFinal(data);
+			data.setBytes(cipher.doFinal(data.getBytes()));
 		} catch (InvalidKeyException e) {
 			e.printStackTrace();
 		} catch (IllegalBlockSizeException e) {
@@ -69,7 +70,6 @@ public class PacketDataLocker implements PacketDataPipe {
 		} catch (BadPaddingException e) {
 			e.printStackTrace();
 		}
-		return data;
 	}
 
 }

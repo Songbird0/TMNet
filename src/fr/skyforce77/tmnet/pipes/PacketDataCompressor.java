@@ -1,17 +1,17 @@
 package fr.skyforce77.tmnet.pipes;
 
+import fr.skyforce77.tmnet.packet.PacketData;
+
 public class PacketDataCompressor implements PacketDataPipe {
 
 	@Override
-	public byte[] in(byte[] data) {
+	public void in(PacketData data) {
 		// TODO
-		return data;
 	}
 
 	@Override
-	public byte[] out(byte[] data) {
+	public void out(PacketData data) {
 		// TODO
-		return data;
 	}
 
 }

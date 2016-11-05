@@ -1,6 +1,6 @@
-package fr.skyforce77.tmnet.layers;
+package fr.skyforce77.tmnet.pipes;
 
-public interface PacketLayer {
+public interface PacketDataPipe {
 	
 	public byte[] in(byte[] data);
 	public byte[] out(byte[] data);

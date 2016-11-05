@@ -1,6 +1,6 @@
-package fr.skyforce77.tmnet.layers;
+package fr.skyforce77.tmnet.pipes;
 
-public class PacketCompressor implements PacketLayer {
+public class PacketDataCompressor implements PacketDataPipe {
 
 	@Override
 	public byte[] in(byte[] data) {

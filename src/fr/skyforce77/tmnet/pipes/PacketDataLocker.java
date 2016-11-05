@@ -1,4 +1,4 @@
-package fr.skyforce77.tmnet.layers;
+package fr.skyforce77.tmnet.pipes;
 
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -10,17 +10,17 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-public class PacketSimpleEncryptor implements PacketLayer {
+public class PacketDataLocker implements PacketDataPipe {
 	
 	private Cipher cipher;
 	private Key key;
 	
-	public PacketSimpleEncryptor(Cipher cipher, Key key) {
+	public PacketDataLocker(Cipher cipher, Key key) {
 		this.cipher = cipher;
 		this.key = key;
 	}
 	
-	public PacketSimpleEncryptor(String algorithm, String key) {
+	public PacketDataLocker(String algorithm, String key) {
 		try {
 			this.cipher = Cipher.getInstance(algorithm);
 		} catch (NoSuchAlgorithmException e) {
@@ -31,7 +31,7 @@ public class PacketSimpleEncryptor implements PacketLayer {
 		this.key = new SecretKeySpec(key.getBytes(), algorithm);
 	}
 	
-	public PacketSimpleEncryptor(String algorithm, byte[] key) {
+	public PacketDataLocker(String algorithm, byte[] key) {
 		try {
 			this.cipher = Cipher.getInstance(algorithm);
 		} catch (NoSuchAlgorithmException e) {

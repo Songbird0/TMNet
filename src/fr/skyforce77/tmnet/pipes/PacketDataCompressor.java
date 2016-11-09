@@ -5,7 +5,7 @@ import fr.skyforce77.tmnet.packet.PacketData;
 /**
 * <h1> PacketDataCompressor class <h1>
 * @author Skyforce77
-* @since 2016-11-09
+* @since 2016-11-05
 * @see PacketDataPipe
 */
 public class PacketDataCompressor implements PacketDataPipe {

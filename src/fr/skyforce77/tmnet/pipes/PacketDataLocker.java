@@ -38,6 +38,8 @@ public class PacketDataLocker implements PacketDataPipe
 	*/
 	public PacketDataLocker(Cipher cipher, Key key) 
 	{
+		assert(cipher != null, "cipher binding is null.");
+		assert(key != null, "key binding is null.");
 		this.cipher = cipher;
 		this.key = key;
 	}
@@ -51,7 +53,12 @@ public class PacketDataLocker implements PacketDataPipe
 	*/
 	public PacketDataLocker(String algorithm, String key) 
 	{
-		try {
+		assert(algorithm != null, "algorithm binding is null.");
+		assert(key != null, "key binding is null.");
+		assert(!algorithm.isEmpty(), "algorithm string is empty.");
+		assert(!key.isEmpty(), "key string is empty.");
+		try 
+		{
 			this.cipher = Cipher.getInstance(algorithm);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
@@ -70,6 +77,10 @@ public class PacketDataLocker implements PacketDataPipe
 	*/
 	public PacketDataLocker(String algorithm, byte[] key) 
 	{
+		assert(algorithm != null, "algorithm binding is null.");
+		assert(key != null, "key binding is null.");
+		assert(!algorithm.isEmpty(), "algorithm string is empty.");
+		assert(key.length > 0, "key array is empty.");
 		try 
 		{
 			this.cipher = Cipher.getInstance(algorithm);
@@ -89,6 +100,7 @@ public class PacketDataLocker implements PacketDataPipe
 	*/
 	public void in(PacketData data) 
 	{
+		assert(data != null, "data binding is null.");
 		try 
 		{
 			cipher.init(Cipher.DECRYPT_MODE, key);
@@ -111,6 +123,7 @@ public class PacketDataLocker implements PacketDataPipe
 	*/
 	public void out(PacketData data) 
 	{
+		assert(data != null, "data binding is null.");
 		try 
 		{
 			cipher.init(Cipher.ENCRYPT_MODE, key);
